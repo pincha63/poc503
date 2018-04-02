@@ -1,0 +1,40 @@
+doctype html
+html lang="en"
+  - mytitle = @title || "Defaulted" 
+  head
+    title== mytitle
+    meta charset="utf-8"
+  body
+    header
+      h1 #{mytitle}
+      <p>Favicon selected by css</p>
+      == slim :nav
+    section
+        #leftside.floatleft
+            a href="/cards/new" Create a new card
+            - if @cards.any?
+              ul#cards
+                -@cards.sort_by{|x| x[:kid]}.each do |myCard|
+                  <li class="lookHyper" id=#{myCard[:kid]}> #{myCard[:kid]}&nbsp;&nbsp;#{myCard[:kname]}&nbsp;:&nbsp;#{myCard[:kcontents]}</li>
+            - else
+              p No cards have been created yet!
+        #rightside.floatright
+           section#ajaxContent
+           section#deleteButton
+        #footer.nofloat
+            p.smalltext $&nbsp;
+
+            
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+javascript:
+  //Event Listeners  
+
+  document.getElementById('cards').addEventListener('click', function(e) {
+    e.preventDefault();
+    var myURL = "/getHtmlForm/" + e.toElement.id;
+    console.log(e);
+    $.ajax({url: myURL, success:function(result) { $('#ajaxContent').html(result) } });
+    
+    //alert('Double Click Done!');
+  }, false);
+  

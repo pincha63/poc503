@@ -1,0 +1,46 @@
+doctype html
+html lang="en"
+  - mytitle = @title || "Defaulted" 
+  head
+    title== mytitle
+    meta charset="utf-8"
+    == css :styles
+  body
+    header
+      h1 #{mytitle}
+      nav
+        ul
+          li
+            a href=="/songs"  title="Songs" Songs
+          li
+            a href=="/tags"  title="Tags" Tags
+          li
+            a href=="/users"  title="Users" Users
+          li
+            a href=="/usertags"  title="Usertags" UserTags
+          li
+            a href=="/songtags"  title="Songtags" SongTags
+          li.rite
+            a href=="/env"  title="Environment" Environment
+          li.rite
+            a href=="/contact"  title="Contact" Contact
+          li.rite
+            a href=="/about" title="About" About
+    section
+        #leftside.floatleft
+            - if @cards.any?
+              ul#cards
+                -@cards.sort_by{|x| x[:kid]}.each do |myCard|
+                  li <a href="/cards/#{myCard[:kid]}">#{myCard[:kid]}&nbsp;&nbsp;#{myCard[:kname]}&nbsp;:&nbsp;#{myCard[:kcontents]}</a>
+            - else
+              p No cards have been created yet!
+              
+            form action="/"
+              input id="GoHome" type="submit" value="Back to home page"
+
+        #rightside.floatright
+
+        #footer.nofloat
+            p.smalltext $&nbsp;
+        
+        

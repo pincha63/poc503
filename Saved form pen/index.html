@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Slim Form</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <section>
+  <div id="myform">
+    <form action="/finalize_add" method="POST">
+      <label for="kname">Name</label><input id="Name" name="kname" type="text" value="Ax1" /><label for="kcontents">Contents</label><input id="Content" name="kcontents" type="text" value="Ax2" /><label for="bid">Board ID</label><input id="Board" name="bid" type="number" value="8" />
+      <p>
+        <input type="submit" value="Save Card" />
+      </p>
+    </form>
+  </div>
+</section>
+<div id="myDeleteButton">
+  <p><form action="/card/1" method="POST"></form><input name="_method" type="hidden" value="DELETE" /><input type="submit" value="Delete Card" /></p>
+</div>
+  
+  
+
+</body>
+
+</html>
